@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useRevealOnScroll } from "@/hooks/use-reveal-on-scroll";
+import catAvatar from "@/assets/puss-in-boots-cat.jpg";
 import { z } from "zod";
 const rotatingPhrases = ["Frontend Development", "Backend Development", "Website Upgrades", "Complete Website Overhauls"];
 const contactSchema = z.object({
@@ -94,7 +95,13 @@ const Index = () => {
         {/* Top nav / branding */}
         <header className="mb-10 flex items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-lg border border-emerald-500/40 bg-gradient-to-br from-primary/40 via-primary/10 to-background shadow-[0_0_25px_rgba(16,185,129,0.45)]" />
+            <div className="h-9 w-9 overflow-hidden rounded-lg border border-emerald-500/60 bg-background shadow-[0_0_25px_rgba(16,185,129,0.45)]">
+              <img
+                src={catAvatar}
+                alt="Cute cat avatar"
+                className="h-full w-full object-cover"
+              />
+            </div>
             <div className="leading-tight">
               <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Web Developer</p>
               <p className="text-sm font-semibold text-foreground">Death</p>
