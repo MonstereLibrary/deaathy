@@ -265,12 +265,80 @@ const Index = () => {
             </div>
           </section>
 
+          {/* Testimonials */}
+          <section
+            id="testimonials"
+            className="space-y-6 opacity-0 animate-fade-in [animation-delay:240ms] [animation-fill-mode:forwards]"
+          >
+            <div className="flex items-end justify-between gap-4">
+              <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Reviews &amp; Testimonials</h2>
+              <p className="max-w-md text-xs text-muted-foreground">
+                Feedback from the people who rely on reliable, performance-focused delivery: HR, tech, founders, and
+                product.
+              </p>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {[
+                {
+                  name: "Sofia Martinez",
+                  role: "HR Manager",
+                  company: "Enterprise SaaS",
+                  quote:
+                    "Exceptionally reliable and easy to work with. Consistently delivered on time and collaborated smoothly with both engineering and non-technical stakeholders.",
+                },
+                {
+                  name: "Alex Chen",
+                  role: "Tech Lead",
+                  company: "Fintech Platform",
+                  quote:
+                    "Clean architecture, thoughtful abstractions, and a constant focus on performance. Ship-ready code that held up under real production load.",
+                },
+                {
+                  name: "Jordan Blake",
+                  role: "Founder &amp; CEO",
+                  company: "VC-backed Startup",
+                  quote:
+                    "Moved from idea to production in weeks, not months. Clear communication, realistic expectations, and meaningful impact on key business metrics.",
+                },
+                {
+                  name: "Priya Singh",
+                  role: "Senior Product Manager",
+                  company: "B2B Product Suite",
+                  quote:
+                    "Understands trade-offs, asks the right questions, and ships features that are both scalable and maintainable. A calm, professional partner for complex projects.",
+                },
+              ].map((review, index) => (
+                <article
+                  key={review.name}
+                  className="group relative flex h-full flex-col justify-between rounded-xl border border-border/80 bg-card/40 px-5 py-5 text-xs text-muted-foreground shadow-[0_0_12px_rgba(15,23,42,0.6)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/70 hover:shadow-[0_0_38px_rgba(16,185,129,0.4)] motion-safe:animate-fade-in [animation-fill-mode:forwards]"
+                  style={{ animationDelay: `${260 + index * 90}ms` }}
+                >
+                  <div className="mb-3 flex items-baseline justify-between gap-3">
+                    <div>
+                      <p className="text-sm font-semibold text-primary">{review.name}</p>
+                      <p className="mt-0.5 text-[0.7rem] uppercase tracking-[0.18em] text-muted-foreground">
+                        {review.company}
+                      </p>
+                    </div>
+                    <span className="rounded-full border border-primary/60 bg-primary/10 px-3 py-1 text-[0.65rem] font-medium uppercase tracking-[0.18em] text-primary opacity-0 translate-y-1 transition-all duration-300 delay-100 motion-safe:group-[&:hover]:opacity-100 motion-safe:group-[&:hover]:translate-y-0">
+                      {review.role}
+                    </span>
+                  </div>
+                  <p className="text-xs leading-relaxed text-muted-foreground md:text-[0.8rem]">
+                    {review.quote}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
+
           {/* Skills */}
           <section
             id="skills"
             className="space-y-6 opacity-0 animate-fade-in [animation-delay:260ms] [animation-fill-mode:forwards]"
           >
-            <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Skills & Stack</h2>
+            <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Skills &amp; Stack</h2>
             <div className="grid gap-6 md:grid-cols-3">
               <div className="space-y-3">
                 <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Frontend</h3>
@@ -315,7 +383,7 @@ const Index = () => {
               </div>
 
               <div className="space-y-3">
-                <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Workflow & Tools</h3>
+                <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Workflow &amp; Tools</h3>
                 <ul className="space-y-1.5 text-xs text-muted-foreground">
                   {[
                     "Git & CI/CD",
