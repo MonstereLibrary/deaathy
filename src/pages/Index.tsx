@@ -160,9 +160,9 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="relative hidden h-full md:block">
-              <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.35)_0,_transparent_55%)]" />
-              <div className="relative h-full rounded-2xl border border-emerald-500/50 bg-gradient-to-b from-secondary/40 via-background/40 to-background px-6 py-6 shadow-[0_0_40px_rgba(16,185,129,0.35)]">
+            <div className="relative hidden md:block">
+               <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.35)_0,_transparent_55%)]" />
+               <div className="relative rounded-2xl border border-emerald-500/50 bg-gradient-to-b from-secondary/40 via-background/40 to-background px-6 py-6 shadow-[0_0_40px_rgba(16,185,129,0.35)]">
                 <div className="mb-6 flex items-center justify-between text-xs text-muted-foreground">
                   <span className="font-medium uppercase tracking-[0.16em] text-primary">Profile</span>
                   <span>Since 2020</span>
