@@ -28,7 +28,8 @@ const contactSchema = z.object({
 const Index = () => {
   const { toast } = useToast();
   const [phraseIndex, setPhraseIndex] = useState(0);
-  const [isSwitching, setIsSwitching] = useState(false);
+  const [displayedText, setDisplayedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<{ email?: string; message?: string }>({});
@@ -36,16 +37,35 @@ const Index = () => {
   const hasAnimatedHero = useRef(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIsSwitching(true);
-      setTimeout(() => {
-        setPhraseIndex((prev) => (prev + 1) % rotatingPhrases.length);
-        setIsSwitching(false);
-      }, 200); // match fade-out duration
-    }, 2600);
+    const currentPhrase = rotatingPhrases[phraseIndex];
 
-    return () => clearInterval(interval);
-  }, []);
+    const isComplete = !isDeleting && displayedText === currentPhrase;
+    const isCleared = isDeleting && displayedText === "";
+
+    let timeout = 90;
+
+    if (isComplete) {
+      timeout = 1400; // pause when a phrase is fully typed
+      setTimeout(() => setIsDeleting(true), timeout);
+      return;
+    }
+
+    if (isCleared) {
+      setIsDeleting(false);
+      setPhraseIndex((prev) => (prev + 1) % rotatingPhrases.length);
+    }
+
+    const handle = setTimeout(() => {
+      setDisplayedText((prev) => {
+        if (isDeleting) {
+          return prev.slice(0, -1);
+        }
+        return currentPhrase.slice(0, prev.length + 1);
+      });
+    }, timeout);
+
+    return () => clearTimeout(handle);
+  }, [displayedText, isDeleting, phraseIndex]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -119,15 +139,9 @@ const Index = () => {
                 Professional Websites
               </h1>
 
-              <div className="h-7 overflow-hidden text-sm font-medium uppercase tracking-[0.28em] text-primary">
-                <span
-                  key={phraseIndex}
-                  className={`inline-block animate-fade-in ${
-                    isSwitching ? "opacity-0" : "opacity-100"
-                  }`}
-                >
-                  {rotatingPhrases[phraseIndex]}
-                </span>
+              <div className="flex h-7 items-center gap-2 overflow-hidden text-sm font-medium uppercase tracking-[0.28em] text-primary">
+                <span className="font-mono text-[0.8rem] tracking-[0.3em]">{displayedText}</span>
+                <span className="h-4 w-px bg-primary animate-pulse" aria-hidden="true" />
               </div>
 
               <p className="max-w-xl text-sm text-muted-foreground md:text-base">
