@@ -180,17 +180,19 @@ const Index = () => {
           </section>
 
           {/* About */}
-          <section id="about" className="space-y-4 opacity-0 animate-fade-in [animation-delay:120ms] [animation-fill-mode:forwards]">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">About Me</h2>
-            <p className="max-w-2xl text-sm text-muted-foreground md:text-base">
-              I&apos;m Death, a 26-year-old web developer and website architect based in California. Since graduating in
-              2020, I&apos;ve been designing, building, and upgrading websites for teams who expect their site to actually
-              work for them — fast, stable, and easy to maintain.
-            </p>
-            <p className="max-w-2xl text-sm text-muted-foreground md:text-base">
-              I combine reliable engineering with a calm, problem-solving mindset: clear communication, thoughtful
-              architecture, and an obsession with detail from first wireframe to the final deployment.
-            </p>
+          <section id="about" className="opacity-0 animate-fade-in [animation-delay:120ms] [animation-fill-mode:forwards]">
+            <div className="space-y-4 rounded-2xl border border-primary/40 bg-card/40 px-5 py-5 shadow-[0_0_30px_rgba(16,185,129,0.35)] md:px-6 md:py-6">
+              <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">About Me</h2>
+              <p className="max-w-2xl text-sm text-muted-foreground md:text-base">
+                I&apos;m Death, a 26-year-old web developer and website architect based in California. Since graduating in
+                2020, I&apos;ve been designing, building, and upgrading websites for teams who expect their site to actually
+                work for them — fast, stable, and easy to maintain.
+              </p>
+              <p className="max-w-2xl text-sm text-muted-foreground md:text-base">
+                I combine reliable engineering with a calm, problem-solving mindset: clear communication, thoughtful
+                architecture, and an obsession with detail from first wireframe to the final deployment.
+              </p>
+            </div>
           </section>
 
           {/* Services */}
