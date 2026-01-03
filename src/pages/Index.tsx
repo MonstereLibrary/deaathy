@@ -134,15 +134,15 @@ const Index = () => {
               <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
                 California · Web Developer & Website Architect
               </p>
-              <h1 className="text-3xl font-extrabold uppercase leading-tight text-foreground md:text-5xl">
+              <h1 className="text-2xl font-extrabold uppercase leading-tight text-foreground md:text-4xl">
                 I Build Powerful
                 <br />
                 Professional Websites
               </h1>
 
-              <div className="flex h-7 items-center gap-2 overflow-hidden text-sm font-medium uppercase tracking-[0.28em] text-primary">
-                <span className="font-mono text-[0.8rem] tracking-[0.3em]">{displayedText}</span>
-                <span className="h-4 w-px bg-primary animate-pulse" aria-hidden="true" />
+              <div className="flex h-6 items-center gap-2 overflow-hidden text-xs font-medium uppercase tracking-[0.28em] text-primary md:h-7 md:text-sm">
+                <span className="font-mono text-[0.7rem] tracking-[0.3em] md:text-[0.8rem]">{displayedText}</span>
+                <span className="h-3 w-px bg-primary animate-pulse md:h-4" aria-hidden="true" />
               </div>
 
               <p className="max-w-xl text-sm text-muted-foreground md:text-base">
