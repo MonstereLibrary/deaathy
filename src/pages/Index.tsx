@@ -3,76 +3,67 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { z } from "zod";
-
-const rotatingPhrases = [
-  "Frontend Development",
-  "Backend Development",
-  "Website Upgrades",
-  "Complete Website Overhauls",
-];
-
+const rotatingPhrases = ["Frontend Development", "Backend Development", "Website Upgrades", "Complete Website Overhauls"];
 const contactSchema = z.object({
-  email: z
-    .string()
-    .trim()
-    .email({ message: "Please enter a valid email address." })
-    .max(255, { message: "Email must be under 255 characters." }),
-  message: z
-    .string()
-    .trim()
-    .min(10, { message: "Tell me a bit more about your project (min 10 characters)." })
-    .max(1000, { message: "Message must be under 1000 characters." }),
+  email: z.string().trim().email({
+    message: "Please enter a valid email address."
+  }).max(255, {
+    message: "Email must be under 255 characters."
+  }),
+  message: z.string().trim().min(10, {
+    message: "Tell me a bit more about your project (min 10 characters)."
+  }).max(1000, {
+    message: "Message must be under 1000 characters."
+  })
 });
-
 const Index = () => {
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [errors, setErrors] = useState<{ email?: string; message?: string }>({});
-
+  const [errors, setErrors] = useState<{
+    email?: string;
+    message?: string;
+  }>({});
   const hasAnimatedHero = useRef(false);
-
   useEffect(() => {
     const currentPhrase = rotatingPhrases[phraseIndex];
-
     const isComplete = !isDeleting && displayedText === currentPhrase;
     const isCleared = isDeleting && displayedText === "";
 
     // Base typing speeds (ms). Slightly faster for delete, moderate pause on full phrase.
     let delay = isDeleting ? 55 : 70;
-
     if (isComplete) {
       delay = 900; // shorter pause when fully typed
       const pauseHandle = setTimeout(() => setIsDeleting(true), delay);
       return () => clearTimeout(pauseHandle);
     }
-
     if (isCleared) {
       setIsDeleting(false);
-      setPhraseIndex((prev) => (prev + 1) % rotatingPhrases.length);
+      setPhraseIndex(prev => (prev + 1) % rotatingPhrases.length);
     }
-
     const handle = setTimeout(() => {
-      setDisplayedText((prev) => {
+      setDisplayedText(prev => {
         if (isDeleting) {
           return prev.slice(0, -1);
         }
         return currentPhrase.slice(0, prev.length + 1);
       });
     }, delay);
-
     return () => clearTimeout(handle);
   }, [displayedText, isDeleting, phraseIndex]);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    const result = contactSchema.safeParse({ email, message });
-
+    const result = contactSchema.safeParse({
+      email,
+      message
+    });
     if (!result.success) {
-      const fieldErrors: { email?: string; message?: string } = {};
+      const fieldErrors: {
+        email?: string;
+        message?: string;
+      } = {};
       for (const issue of result.error.issues) {
         const field = issue.path[0];
         if (field === "email" || field === "message") {
@@ -82,19 +73,14 @@ const Index = () => {
       setErrors(fieldErrors);
       return;
     }
-
     setErrors({});
-
     const recipient = "monstercompanym@gmail.com";
     const subject = "New project inquiry from portfolio site";
     const body = `From: ${email}\n\n${message}`;
     const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
     window.location.href = mailtoUrl;
   };
-
-  return (
-    <div className="min-h-screen bg-background text-foreground">
+  return <div className="min-h-screen bg-background text-foreground">
       <div className="mx-auto flex min-h-screen max-w-5xl flex-col px-6 py-10 md:px-10 md:py-14">
         {/* Top nav / branding */}
         <header className="mb-10 flex items-center justify-between gap-6">
@@ -127,10 +113,7 @@ const Index = () => {
 
         <main className="flex flex-1 flex-col gap-20 pb-10 md:gap-24 md:pb-16">
           {/* Hero */}
-          <section
-            id="hero"
-            className="grid items-center gap-10 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1.2fr)]"
-          >
+          <section id="hero" className="grid items-center gap-10 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1.2fr)]">
             <div className="space-y-6 md:space-y-8">
               <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
                 California · Web Developer & Website Architect
@@ -197,10 +180,7 @@ const Index = () => {
           </section>
 
           {/* About */}
-          <section
-            id="about"
-            className="space-y-4 opacity-0 animate-fade-in [animation-delay:120ms] [animation-fill-mode:forwards]"
-          >
+          <section id="about" className="space-y-4 opacity-0 animate-fade-in [animation-delay:120ms] [animation-fill-mode:forwards]">
             <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">About Me</h2>
             <p className="max-w-2xl text-sm text-muted-foreground md:text-base">
               I&apos;m Death, a 26-year-old web developer and website architect based in California. Since graduating in
@@ -214,10 +194,7 @@ const Index = () => {
           </section>
 
           {/* Services */}
-          <section
-            id="services"
-            className="space-y-6 opacity-0 animate-fade-in [animation-delay:220ms] [animation-fill-mode:forwards]"
-          >
+          <section id="services" className="space-y-6 opacity-0 animate-fade-in [animation-delay:220ms] [animation-fill-mode:forwards]">
             <div className="flex items-end justify-between gap-4">
               <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Services</h2>
               <p className="max-w-md text-xs text-muted-foreground">
@@ -226,51 +203,33 @@ const Index = () => {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-              {[
-                {
-                  title: "Frontend Development",
-                  description:
-                    "Modern, responsive interfaces built for clarity, speed, and consistency across devices.",
-                },
-                {
-                  title: "Backend Development",
-                  description:
-                    "Robust APIs, data models, and integrations that keep your product stable and secure.",
-                },
-                {
-                  title: "Website Upgrades",
-                  description:
-                    "Performance tuning, UX refinements, accessibility, and design refreshes on existing sites.",
-                },
-                {
-                  title: "Complete Website Overhauls",
-                  description:
-                    "Full redesigns and rebuilds that modernize legacy systems into clean, maintainable platforms.",
-                },
-              ].map((service, index) => (
-                <article
-                  key={service.title}
-                  className="group relative overflow-hidden rounded-xl border border-border/70 bg-card/40 px-5 py-5 transition-transform duration-200 hover:-translate-y-1 hover:border-primary/70 hover:shadow-[0_0_35px_rgba(16,185,129,0.45)]"
-                  style={{
-                    animationDelay: `${260 + index * 80}ms`,
-                    animationFillMode: "forwards",
-                  }}
-                >
+              {[{
+              title: "Frontend Development",
+              description: "Modern, responsive interfaces built for clarity, speed, and consistency across devices."
+            }, {
+              title: "Backend Development",
+              description: "Robust APIs, data models, and integrations that keep your product stable and secure."
+            }, {
+              title: "Website Upgrades",
+              description: "Performance tuning, UX refinements, accessibility, and design refreshes on existing sites."
+            }, {
+              title: "Complete Website Overhauls",
+              description: "Full redesigns and rebuilds that modernize legacy systems into clean, maintainable platforms."
+            }].map((service, index) => <article key={service.title} className="group relative overflow-hidden rounded-xl border border-border/70 bg-card/40 px-5 py-5 transition-transform duration-200 hover:-translate-y-1 hover:border-primary/70 hover:shadow-[0_0_35px_rgba(16,185,129,0.45)]" style={{
+              animationDelay: `${260 + index * 80}ms`,
+              animationFillMode: "forwards"
+            }}>
                   <div className="pointer-events-none absolute inset-px -z-10 rounded-[inherit] bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.22)_0,_transparent_55%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <h3 className="mb-2 text-sm font-semibold uppercase tracking-[0.22em] text-primary">
                     {service.title}
                   </h3>
                   <p className="text-xs text-muted-foreground md:text-sm">{service.description}</p>
-                </article>
-              ))}
+                </article>)}
             </div>
           </section>
 
           {/* Testimonials */}
-          <section
-            id="testimonials"
-            className="space-y-6 opacity-0 animate-fade-in [animation-delay:240ms] [animation-fill-mode:forwards]"
-          >
+          <section id="testimonials" className="space-y-6 opacity-0 animate-fade-in [animation-delay:240ms] [animation-fill-mode:forwards]">
             <div className="flex items-end justify-between gap-4">
               <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Reviews &amp; Testimonials</h2>
               <p className="max-w-md text-xs text-muted-foreground">
@@ -280,41 +239,29 @@ const Index = () => {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {[
-                {
-                  name: "Sofia Martinez",
-                  role: "HR Manager",
-                  company: "Enterprise SaaS",
-                  quote:
-                    "Exceptionally reliable and easy to work with. Consistently delivered on time and collaborated smoothly with both engineering and non-technical stakeholders.",
-                },
-                {
-                  name: "Alex Chen",
-                  role: "Tech Lead",
-                  company: "Fintech Platform",
-                  quote:
-                    "Clean architecture, thoughtful abstractions, and a constant focus on performance. Ship-ready code that held up under real production load.",
-                },
-                {
-                  name: "Jordan Blake",
-                  role: "Founder &amp; CEO",
-                  company: "VC-backed Startup",
-                  quote:
-                    "Moved from idea to production in weeks, not months. Clear communication, realistic expectations, and meaningful impact on key business metrics.",
-                },
-                {
-                  name: "Priya Singh",
-                  role: "Senior Product Manager",
-                  company: "B2B Product Suite",
-                  quote:
-                    "Understands trade-offs, asks the right questions, and ships features that are both scalable and maintainable. A calm, professional partner for complex projects.",
-                },
-              ].map((review, index) => (
-                <article
-                  key={review.name}
-                  className="group relative flex h-full flex-col justify-between rounded-xl border border-border/80 bg-card/40 px-5 py-5 text-xs text-muted-foreground shadow-[0_0_12px_rgba(15,23,42,0.6)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/70 hover:shadow-[0_0_38px_rgba(16,185,129,0.4)] motion-safe:animate-fade-in [animation-fill-mode:forwards]"
-                  style={{ animationDelay: `${260 + index * 90}ms` }}
-                >
+              {[{
+              name: "Sofia Martinez",
+              role: "HR Manager",
+              company: "Enterprise SaaS",
+              quote: "Exceptionally reliable and easy to work with. Consistently delivered on time and collaborated smoothly with both engineering and non-technical stakeholders."
+            }, {
+              name: "Alex Chen",
+              role: "Tech Lead",
+              company: "Fintech Platform",
+              quote: "Clean architecture, thoughtful abstractions, and a constant focus on performance. Ship-ready code that held up under real production load."
+            }, {
+              name: "Jordan Blake",
+              role: "Founder &amp; CEO",
+              company: "VC-backed Startup",
+              quote: "Moved from idea to production in weeks, not months. Clear communication, realistic expectations, and meaningful impact on key business metrics."
+            }, {
+              name: "Priya Singh",
+              role: "Senior Product Manager",
+              company: "B2B Product Suite",
+              quote: "Understands trade-offs, asks the right questions, and ships features that are both scalable and maintainable. A calm, professional partner for complex projects."
+            }].map((review, index) => <article key={review.name} className="group relative flex h-full flex-col justify-between rounded-xl border border-border/80 bg-card/40 px-5 py-5 text-xs text-muted-foreground shadow-[0_0_12px_rgba(15,23,42,0.6)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/70 hover:shadow-[0_0_38px_rgba(16,185,129,0.4)] motion-safe:animate-fade-in [animation-fill-mode:forwards]" style={{
+              animationDelay: `${260 + index * 90}ms`
+            }}>
                   <div className="mb-3 flex items-baseline justify-between gap-3">
                     <div>
                       <p className="text-sm font-semibold text-primary">{review.name}</p>
@@ -329,98 +276,55 @@ const Index = () => {
                   <p className="text-xs leading-relaxed text-muted-foreground md:text-[0.8rem]">
                     {review.quote}
                   </p>
-                </article>
-              ))}
+                </article>)}
             </div>
           </section>
 
           {/* Skills */}
-          <section
-            id="skills"
-            className="space-y-6 opacity-0 animate-fade-in [animation-delay:260ms] [animation-fill-mode:forwards]"
-          >
+          <section id="skills" className="space-y-6 opacity-0 animate-fade-in [animation-delay:260ms] [animation-fill-mode:forwards]">
             <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Skills &amp; Stack</h2>
             <div className="grid gap-6 md:grid-cols-3">
               <div className="space-y-3">
                 <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Frontend</h3>
                 <ul className="space-y-1.5 text-xs text-muted-foreground">
-                  {[
-                    "TypeScript",
-                    "React / Next.js",
-                    "Tailwind CSS",
-                    "Component systems",
-                    "Accessibility patterns",
-                  ].map((item) => (
-                    <li
-                      key={item}
-                      className="relative cursor-default pl-4 transition-colors hover:text-foreground"
-                    >
+                  {["TypeScript", "React / Next.js", "Tailwind CSS", "Component systems", "Accessibility patterns"].map(item => <li key={item} className="relative cursor-default pl-4 transition-colors hover:text-foreground">
                       <span className="absolute left-0 top-1 h-1.5 w-1.5 rounded-full bg-primary/70 shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
                       {item}
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </div>
 
               <div className="space-y-3">
                 <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Backend</h3>
                 <ul className="space-y-1.5 text-xs text-muted-foreground">
-                  {[
-                    "Node.js APIs",
-                    "Relational databases",
-                    "Authentication flows",
-                    "API design / versioning",
-                    "Background jobs",
-                  ].map((item) => (
-                    <li
-                      key={item}
-                      className="relative cursor-default pl-4 transition-colors hover:text-foreground"
-                    >
+                  {["Node.js APIs", "Relational databases", "Authentication flows", "API design / versioning", "Background jobs"].map(item => <li key={item} className="relative cursor-default pl-4 transition-colors hover:text-foreground">
                       <span className="absolute left-0 top-1 h-1.5 w-1.5 rounded-full bg-primary/70 shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
                       {item}
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </div>
 
               <div className="space-y-3">
                 <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Workflow &amp; Tools</h3>
                 <ul className="space-y-1.5 text-xs text-muted-foreground">
-                  {[
-                    "Git & CI/CD",
-                    "Performance audits",
-                    "Monitoring & logging",
-                    "Design handoff",
-                    "Collaboration with product teams",
-                  ].map((item) => (
-                    <li
-                      key={item}
-                      className="relative cursor-default pl-4 transition-colors hover:text-foreground"
-                    >
+                  {["Git & CI/CD", "Performance audits", "Monitoring & logging", "Design handoff", "Collaboration with product teams"].map(item => <li key={item} className="relative cursor-default pl-4 transition-colors hover:text-foreground">
                       <span className="absolute left-0 top-1 h-1.5 w-1.5 rounded-full bg-primary/70 shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
                       {item}
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </div>
             </div>
           </section>
 
           {/* Projects placeholder */}
-          <section
-            className="space-y-4 opacity-0 animate-fade-in [animation-delay:300ms] [animation-fill-mode:forwards]"
-          >
+          <section className="space-y-4 opacity-0 animate-fade-in [animation-delay:300ms] [animation-fill-mode:forwards]">
             <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Selected Work</h2>
             <p className="max-w-2xl text-xs text-muted-foreground md:text-sm">
               A curated selection of production projects will appear here. Each case study will break down the problem,
               the architecture, and the measurable impact of the final build.
             </p>
             <div className="grid gap-4 md:grid-cols-2">
-              {["Client Project Placeholder", "Case Study Placeholder"].map((title, index) => (
-                <article
-                  key={title}
-                  className="group relative flex flex-col justify-between rounded-xl border border-border/70 bg-card/40 px-5 py-5 text-xs text-muted-foreground transition-transform duration-200 hover:-translate-y-1 hover:border-primary/70 hover:text-foreground hover:shadow-[0_0_32px_rgba(16,185,129,0.35)]"
-                >
+              {["Client Project Placeholder", "Case Study Placeholder"].map((title, index) => <article key={title} className="group relative flex flex-col justify-between rounded-xl border border-border/70 bg-card/40 px-5 py-5 text-xs text-muted-foreground transition-transform duration-200 hover:-translate-y-1 hover:border-primary/70 hover:text-foreground hover:shadow-[0_0_32px_rgba(16,185,129,0.35)]">
                   <div>
                     <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                       Upcoming
@@ -435,22 +339,16 @@ const Index = () => {
                     In Progress
                   </span>
                   <div className="pointer-events-none absolute inset-px -z-10 rounded-[inherit] bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.2)_0,_transparent_55%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                </article>
-              ))}
+                </article>)}
             </div>
           </section>
 
           {/* Contact */}
-          <section
-            id="contact"
-            className="space-y-6 rounded-2xl border border-border/80 bg-gradient-to-b from-secondary/40 via-background/40 to-background px-5 py-6 opacity-0 shadow-[0_0_40px_rgba(16,185,129,0.28)] animate-fade-in [animation-delay:340ms] [animation-fill-mode:forwards] md:px-7 md:py-8"
-          >
+          <section id="contact" className="space-y-6 rounded-2xl border border-border/80 bg-gradient-to-b from-secondary/40 via-background/40 to-background px-5 py-6 opacity-0 shadow-[0_0_40px_rgba(16,185,129,0.28)] animate-fade-in [animation-delay:340ms] [animation-fill-mode:forwards] md:px-7 md:py-8">
             <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
                 <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Contact</h2>
-                <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">
-                  Ready for a new build, a focused upgrade, or a complete overhaul? Share a quick overview and I&apos;ll
-                  respond with next steps, or email me directly at <span className="text-foreground">monstercompanym@gmail.com</span>.
+                <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">Ready for a new build, a focused upgrade, or a complete overhaul? Share a quick overview and I'll respond with next steps.<span className="text-foreground">monstercompanym@gmail.com</span>.
                 </p>
               </div>
               <p className="text-xs text-muted-foreground">
@@ -460,39 +358,18 @@ const Index = () => {
 
             <form onSubmit={handleSubmit} className="mt-4 space-y-4 md:space-y-5">
               <div className="space-y-2">
-                <label
-                  htmlFor="email"
-                  className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground"
-                >
+                <label htmlFor="email" className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
                   Email
                 </label>
-                <Input
-                  id="email"
-                  type="email"
-                  autoComplete="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="h-10 border-border/80 bg-background/60 text-sm text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
-                  placeholder="you@company.com"
-                />
+                <Input id="email" type="email" autoComplete="email" value={email} onChange={e => setEmail(e.target.value)} className="h-10 border-border/80 bg-background/60 text-sm text-foreground placeholder:text-muted-foreground focus-visible:ring-primary" placeholder="you@company.com" />
                 {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
               </div>
 
               <div className="space-y-2">
-                <label
-                  htmlFor="message"
-                  className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground"
-                >
+                <label htmlFor="message" className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
                   Project details
                 </label>
-                <Textarea
-                  id="message"
-                  rows={5}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  className="border-border/80 bg-background/60 text-sm text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
-                  placeholder="Briefly describe your website, goals, timeline, and any relevant links."
-                />
+                <Textarea id="message" rows={5} value={message} onChange={e => setMessage(e.target.value)} className="border-border/80 bg-background/60 text-sm text-foreground placeholder:text-muted-foreground focus-visible:ring-primary" placeholder="Briefly describe your website, goals, timeline, and any relevant links." />
                 {errors.message && <p className="text-xs text-destructive">{errors.message}</p>}
               </div>
 
@@ -510,8 +387,6 @@ const Index = () => {
           <span className="hidden sm:inline">Built with a focus on reliability, clarity, and long-term maintainability.</span>
         </footer>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
