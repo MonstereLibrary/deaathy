@@ -123,26 +123,26 @@ const Index = () => {
           {/* Hero */}
           <section ref={heroRef} id="hero" className="reveal-section grid items-center gap-10 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1.2fr)]">
             <div className="space-y-6 md:space-y-8">
-              <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
+              <p className="reveal-child text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground" data-reveal-index="0">
                 California · Web Developer & Website Architect
               </p>
-              <h1 className="text-2xl font-extrabold uppercase leading-tight text-foreground md:text-4xl">
+              <h1 className="reveal-child text-2xl font-extrabold uppercase leading-tight text-foreground md:text-4xl" data-reveal-index="1">
                 I Build Powerful
                 <br />
                 Professional Websites
               </h1>
 
-              <div className="flex h-6 items-center gap-2 overflow-hidden text-xs font-medium uppercase tracking-[0.28em] text-primary md:h-7 md:text-sm">
+              <div className="reveal-child flex h-6 items-center gap-2 overflow-hidden text-xs font-medium uppercase tracking-[0.28em] text-primary md:h-7 md:text-sm" data-reveal-index="2">
                 <span className="font-mono text-[0.7rem] tracking-[0.3em] md:text-[0.8rem]">{displayedText}</span>
                 <span className="h-3 w-px bg-primary animate-pulse md:h-4" aria-hidden="true" />
               </div>
 
-              <p className="max-w-xl text-sm text-muted-foreground md:text-base">
+              <p className="reveal-child max-w-xl text-sm text-muted-foreground md:text-base" data-reveal-index="3">
                 End-to-end website architecture, from interface design to backend logic. I design, build, upgrade,
                 and overhaul high-performance sites for teams who care about quality.
               </p>
 
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="reveal-child flex flex-wrap items-center gap-4 pt-2" data-reveal-index="4">
                 <Button size="lg" className="shadow-[0_0_35px_rgba(16,185,129,0.55)]" asChild>
                   <a href="#contact">Let&apos;s Work</a>
                 </Button>
@@ -152,7 +152,7 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="relative hidden md:block">
+            <div className="reveal-child relative hidden md:block" data-reveal-index="5">
                <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.35)_0,_transparent_55%)]" />
                <div className="relative rounded-2xl border border-emerald-500/50 bg-gradient-to-b from-secondary/40 via-background/40 to-background px-6 py-6 shadow-[0_0_40px_rgba(16,185,129,0.35)]">
                 <div className="mb-6 flex items-center justify-between text-xs text-muted-foreground">
@@ -236,33 +236,33 @@ const Index = () => {
           </section>
 
           {/* Skills */}
-          <section id="skills" className="space-y-6 opacity-0 animate-fade-in [animation-delay:260ms] [animation-fill-mode:forwards]">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Skills &amp; Stack</h2>
+          <section ref={skillsRef} id="skills" className="reveal-section space-y-6">
+            <h2 className="reveal-child text-sm font-semibold uppercase tracking-[0.28em] text-primary" data-reveal-index="0">Skills &amp; Stack</h2>
             <div className="grid gap-6 md:grid-cols-3">
-              <div className="space-y-3">
+              <div className="reveal-child space-y-3" data-reveal-index="1">
                 <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Frontend</h3>
                 <ul className="space-y-1.5 text-xs text-muted-foreground">
-                  {["TypeScript", "React / Next.js", "Tailwind CSS", "Component systems", "Accessibility patterns"].map(item => <li key={item} className="relative cursor-default pl-4 transition-colors hover:text-foreground">
+                  {["TypeScript", "React / Next.js", "Tailwind CSS", "Component systems", "Accessibility patterns"].map((item, index) => <li key={item} className="reveal-child relative cursor-default pl-4 transition-colors hover:text-foreground" data-reveal-index={index + 2}>
                       <span className="absolute left-0 top-1 h-1.5 w-1.5 rounded-full bg-primary/70 shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
                       {item}
                     </li>)}
                 </ul>
               </div>
 
-              <div className="space-y-3">
+              <div className="reveal-child space-y-3" data-reveal-index="2">
                 <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Backend</h3>
                 <ul className="space-y-1.5 text-xs text-muted-foreground">
-                  {["Node.js APIs", "Relational databases", "Authentication flows", "API design / versioning", "Background jobs"].map(item => <li key={item} className="relative cursor-default pl-4 transition-colors hover:text-foreground">
+                  {["Node.js APIs", "Relational databases", "Authentication flows", "API design / versioning", "Background jobs"].map((item, index) => <li key={item} className="reveal-child relative cursor-default pl-4 transition-colors hover:text-foreground" data-reveal-index={index + 2}>
                       <span className="absolute left-0 top-1 h-1.5 w-1.5 rounded-full bg-primary/70 shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
                       {item}
                     </li>)}
                 </ul>
               </div>
 
-              <div className="space-y-3">
+              <div className="reveal-child space-y-3" data-reveal-index="3">
                 <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Workflow &amp; Tools</h3>
                 <ul className="space-y-1.5 text-xs text-muted-foreground">
-                  {["Git & CI/CD", "Performance audits", "Monitoring & logging", "Design handoff", "Collaboration with product teams"].map(item => <li key={item} className="relative cursor-default pl-4 transition-colors hover:text-foreground">
+                  {["Git & CI/CD", "Performance audits", "Monitoring & logging", "Design handoff", "Collaboration with product teams"].map((item, index) => <li key={item} className="reveal-child relative cursor-default pl-4 transition-colors hover:text-foreground" data-reveal-index={index + 2}>
                       <span className="absolute left-0 top-1 h-1.5 w-1.5 rounded-full bg-primary/70 shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
                       {item}
                     </li>)}
