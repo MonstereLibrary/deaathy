@@ -452,7 +452,7 @@ const Index = () => {
                 <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Contact</h2>
                 <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">
                   Ready for a new build, a focused upgrade, or a complete overhaul? Share a quick overview and I&apos;ll
-                  respond with next steps.
+                  respond with next steps, or email me directly at <span className="text-foreground">monstercompanym@gmail.com</span>.
                 </p>
               </div>
               <p className="text-xs text-muted-foreground">
@@ -502,10 +502,6 @@ const Index = () => {
                 <Button type="submit" size="lg" className="shadow-[0_0_30px_rgba(16,185,129,0.55)]">
                   Contact Me
                 </Button>
-                <span className="text-xs text-muted-foreground">
-                  This form is currently demonstration-only. Connect it to your preferred email or backend when you&apos;re
-                  ready.
-                </span>
               </div>
             </form>
           </section>
