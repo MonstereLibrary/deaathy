@@ -189,7 +189,7 @@ const Index = () => {
                 <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
 
                 <p className="mt-6 text-xs text-muted-foreground">
-                  I build and refine production-grade web experiences focused on reliability and performance.
+                  I build, refine, and maintain production-grade web experiences that prioritize reliability, performance, and long-term scalability. My work focuses on delivering fast, secure, and resilient systems, ensuring that every product performs consistently under real-world conditions while remaining easy to maintain and evolve over time.
                 </p>
               </div>
             </div>
