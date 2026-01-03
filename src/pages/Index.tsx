@@ -326,7 +326,7 @@ const Index = () => {
                     </span>
                   </div>
                   <p className="text-xs leading-relaxed text-muted-foreground md:text-[0.8rem]">
-                    {review.quote}
+                    {review.quote}
                   </p>
                 </article>
               ))}
