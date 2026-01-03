@@ -174,8 +174,7 @@ const Index = () => {
                 <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
 
                 <p className="mt-6 text-xs text-muted-foreground">
-                  I architect, build, and refine production-grade web experiences with a focus on clarity, reliability,
-                  and performance.
+                  I build and refine production-grade web experiences focused on reliability and performance.
                 </p>
               </div>
             </div>
