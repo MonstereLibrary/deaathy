@@ -228,6 +228,42 @@ const Index = () => {
             </div>
           </section>
 
+          {/* Skills */}
+          <section id="skills" className="space-y-6 opacity-0 animate-fade-in [animation-delay:260ms] [animation-fill-mode:forwards]">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Skills &amp; Stack</h2>
+            <div className="grid gap-6 md:grid-cols-3">
+              <div className="space-y-3">
+                <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Frontend</h3>
+                <ul className="space-y-1.5 text-xs text-muted-foreground">
+                  {["TypeScript", "React / Next.js", "Tailwind CSS", "Component systems", "Accessibility patterns"].map(item => <li key={item} className="relative cursor-default pl-4 transition-colors hover:text-foreground">
+                      <span className="absolute left-0 top-1 h-1.5 w-1.5 rounded-full bg-primary/70 shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
+                      {item}
+                    </li>)}
+                </ul>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Backend</h3>
+                <ul className="space-y-1.5 text-xs text-muted-foreground">
+                  {["Node.js APIs", "Relational databases", "Authentication flows", "API design / versioning", "Background jobs"].map(item => <li key={item} className="relative cursor-default pl-4 transition-colors hover:text-foreground">
+                      <span className="absolute left-0 top-1 h-1.5 w-1.5 rounded-full bg-primary/70 shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
+                      {item}
+                    </li>)}
+                </ul>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Workflow &amp; Tools</h3>
+                <ul className="space-y-1.5 text-xs text-muted-foreground">
+                  {["Git & CI/CD", "Performance audits", "Monitoring & logging", "Design handoff", "Collaboration with product teams"].map(item => <li key={item} className="relative cursor-default pl-4 transition-colors hover:text-foreground">
+                      <span className="absolute left-0 top-1 h-1.5 w-1.5 rounded-full bg-primary/70 shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
+                      {item}
+                    </li>)}
+                </ul>
+              </div>
+            </div>
+          </section>
+
           {/* Testimonials */}
           <section id="testimonials" className="space-y-6 opacity-0 animate-fade-in [animation-delay:240ms] [animation-fill-mode:forwards]">
             <div className="flex items-end justify-between gap-4">
@@ -277,42 +313,6 @@ const Index = () => {
                     {review.quote}
                   </p>
                 </article>)}
-            </div>
-          </section>
-
-          {/* Skills */}
-          <section id="skills" className="space-y-6 opacity-0 animate-fade-in [animation-delay:260ms] [animation-fill-mode:forwards]">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Skills &amp; Stack</h2>
-            <div className="grid gap-6 md:grid-cols-3">
-              <div className="space-y-3">
-                <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Frontend</h3>
-                <ul className="space-y-1.5 text-xs text-muted-foreground">
-                  {["TypeScript", "React / Next.js", "Tailwind CSS", "Component systems", "Accessibility patterns"].map(item => <li key={item} className="relative cursor-default pl-4 transition-colors hover:text-foreground">
-                      <span className="absolute left-0 top-1 h-1.5 w-1.5 rounded-full bg-primary/70 shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
-                      {item}
-                    </li>)}
-                </ul>
-              </div>
-
-              <div className="space-y-3">
-                <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Backend</h3>
-                <ul className="space-y-1.5 text-xs text-muted-foreground">
-                  {["Node.js APIs", "Relational databases", "Authentication flows", "API design / versioning", "Background jobs"].map(item => <li key={item} className="relative cursor-default pl-4 transition-colors hover:text-foreground">
-                      <span className="absolute left-0 top-1 h-1.5 w-1.5 rounded-full bg-primary/70 shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
-                      {item}
-                    </li>)}
-                </ul>
-              </div>
-
-              <div className="space-y-3">
-                <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Workflow &amp; Tools</h3>
-                <ul className="space-y-1.5 text-xs text-muted-foreground">
-                  {["Git & CI/CD", "Performance audits", "Monitoring & logging", "Design handoff", "Collaboration with product teams"].map(item => <li key={item} className="relative cursor-default pl-4 transition-colors hover:text-foreground">
-                      <span className="absolute left-0 top-1 h-1.5 w-1.5 rounded-full bg-primary/70 shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
-                      {item}
-                    </li>)}
-                </ul>
-              </div>
             </div>
           </section>
 
