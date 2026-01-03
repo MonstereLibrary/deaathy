@@ -115,11 +115,11 @@ const Index = () => {
             <a href="#services" className="transition-colors hover:text-foreground">
               Services
             </a>
-            <a href="#testimonials" className="transition-colors hover:text-foreground">
-              Reviews
-            </a>
             <a href="#skills" className="transition-colors hover:text-foreground">
               Skills
+            </a>
+            <a href="#testimonials" className="transition-colors hover:text-foreground">
+              Reviews
             </a>
             <a href="#contact" className="transition-colors hover:text-foreground">
               Contact
