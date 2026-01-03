@@ -42,12 +42,13 @@ const Index = () => {
     const isComplete = !isDeleting && displayedText === currentPhrase;
     const isCleared = isDeleting && displayedText === "";
 
-    let timeout = 90;
+    // Base typing speeds (ms). Slightly faster for delete, moderate pause on full phrase.
+    let delay = isDeleting ? 55 : 70;
 
     if (isComplete) {
-      timeout = 1400; // pause when a phrase is fully typed
-      setTimeout(() => setIsDeleting(true), timeout);
-      return;
+      delay = 900; // shorter pause when fully typed
+      const pauseHandle = setTimeout(() => setIsDeleting(true), delay);
+      return () => clearTimeout(pauseHandle);
     }
 
     if (isCleared) {
@@ -62,7 +63,7 @@ const Index = () => {
         }
         return currentPhrase.slice(0, prev.length + 1);
       });
-    }, timeout);
+    }, delay);
 
     return () => clearTimeout(handle);
   }, [displayedText, isDeleting, phraseIndex]);
