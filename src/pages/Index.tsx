@@ -96,11 +96,7 @@ const Index = () => {
         <header className="mb-10 flex items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <div className="h-9 w-9 overflow-hidden rounded-lg border border-emerald-500/60 bg-background shadow-[0_0_25px_rgba(16,185,129,0.45)]">
-              <img
-                src={catAvatar}
-                alt="Cute cat avatar"
-                className="h-full w-full object-cover"
-              />
+              <img src={catAvatar} alt="Cute cat avatar" className="h-full w-full object-cover" />
             </div>
             <div className="leading-tight">
               <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Web Developer</p>
@@ -290,41 +286,27 @@ const Index = () => {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {[
-                {
-                  name: "Sofia Martinez",
-                  role: "HR Manager",
-                  company: "Enterprise SaaS",
-                  quote:
-                    "Exceptionally reliable and easy to work with. Consistently delivered on time and collaborated smoothly with both engineering and non-technical stakeholders.",
-                },
-                {
-                  name: "Alex Chen",
-                  role: "Tech Lead",
-                  company: "Fintech Platform",
-                  quote:
-                    "Clean architecture, thoughtful abstractions, and a constant focus on performance. Ship-ready code that held up under real production load.",
-                },
-                {
-                  name: "Jordan Blake",
-                  role: "Founder &amp; CEO",
-                  company: "VC-backed Startup",
-                  quote:
-                    "Moved from idea to production in weeks, not months. Clear communication, realistic expectations, and meaningful impact on key business metrics.",
-                },
-                {
-                  name: "Priya Singh",
-                  role: "Senior Product Manager",
-                  company: "B2B Product Suite",
-                  quote:
-                    "Understands trade-offs, asks the right questions, and ships features that are both scalable and maintainable. A calm, professional partner for complex projects.",
-                },
-              ].map((review, index) => (
-                <article
-                  key={review.name}
-                  className="reveal-child group relative flex h-full flex-col justify-between rounded-xl border border-border/80 bg-card/40 px-5 py-5 text-xs text-muted-foreground shadow-[0_0_12px_rgba(15,23,42,0.6)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/70 hover:shadow-[0_0_38px_rgba(16,185,129,0.4)]"
-                  data-reveal-index={index + 1}
-                >
+              {[{
+              name: "Sofia Martinez",
+              role: "HR Manager",
+              company: "Enterprise SaaS",
+              quote: "Exceptionally reliable and easy to work with. Consistently delivered on time and collaborated smoothly with both engineering and non-technical stakeholders."
+            }, {
+              name: "Alex Chen",
+              role: "Tech Lead",
+              company: "Fintech Platform",
+              quote: "Clean architecture, thoughtful abstractions, and a constant focus on performance. Ship-ready code that held up under real production load."
+            }, {
+              name: "Jordan Blake",
+              role: "Founder &amp; CEO",
+              company: "VC-backed Startup",
+              quote: "Moved from idea to production in weeks, not months. Clear communication, realistic expectations, and meaningful impact on key business metrics."
+            }, {
+              name: "Priya Singh",
+              role: "Senior Product Manager",
+              company: "B2B Product Suite",
+              quote: "Understands trade-offs, asks the right questions, and ships features that are both scalable and maintainable. A calm, professional partner for complex projects."
+            }].map((review, index) => <article key={review.name} className="reveal-child group relative flex h-full flex-col justify-between rounded-xl border border-border/80 bg-card/40 px-5 py-5 text-xs text-muted-foreground shadow-[0_0_12px_rgba(15,23,42,0.6)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/70 hover:shadow-[0_0_38px_rgba(16,185,129,0.4)]" data-reveal-index={index + 1}>
                   <div className="mb-3 flex items-baseline justify-between gap-3">
                     <div>
                       <p className="text-sm font-semibold text-primary">{review.name}</p>
@@ -337,33 +319,21 @@ const Index = () => {
                     </span>
                   </div>
                   <p className="text-xs leading-relaxed text-muted-foreground md:text-[0.8rem]">{review.quote}</p>
-                </article>
-              ))}
+                </article>)}
             </div>
           </section>
 
           {/* Projects placeholder */}
           <section ref={workRef} className="reveal-section space-y-4">
-            <h2
-              className="reveal-child text-sm font-semibold uppercase tracking-[0.28em] text-primary"
-              data-reveal-index="0"
-            >
+            <h2 className="reveal-child text-sm font-semibold uppercase tracking-[0.28em] text-primary" data-reveal-index="0">
               Selected Work
             </h2>
-            <p
-              className="reveal-child max-w-2xl text-xs text-muted-foreground md:text-sm"
-              data-reveal-index="1"
-            >
+            <p className="reveal-child max-w-2xl text-xs text-muted-foreground md:text-sm" data-reveal-index="1">
               A curated selection of production projects will appear here. Each case study will break down the problem,
               the architecture, and the measurable impact of the final build.
             </p>
             <div className="grid gap-4 md:grid-cols-2">
-              {["Client Project Placeholder", "Case Study Placeholder"].map((title, index) => (
-                <article
-                  key={title}
-                  className="reveal-child group relative flex flex-col justify-between rounded-xl border border-border/70 bg-card/40 px-5 py-5 text-xs text-muted-foreground transition-transform duration-200 hover:-translate-y-1 hover:border-primary/70 hover:text-foreground hover:shadow-[0_0_32px_rgba(16,185,129,0.35)]"
-                  data-reveal-index={index + 2}
-                >
+              {["Client Project Placeholder", "Case Study Placeholder"].map((title, index) => <article key={title} className="reveal-child group relative flex flex-col justify-between rounded-xl border border-border/70 bg-card/40 px-5 py-5 text-xs text-muted-foreground transition-transform duration-200 hover:-translate-y-1 hover:border-primary/70 hover:text-foreground hover:shadow-[0_0_32px_rgba(16,185,129,0.35)]" data-reveal-index={index + 2}>
                   <div>
                     <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                       Upcoming
@@ -378,27 +348,16 @@ const Index = () => {
                     In Progress
                   </span>
                   <div className="pointer-events-none absolute inset-px -z-10 rounded-[inherit] bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.2)_0,_transparent_55%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                </article>
-              ))}
+                </article>)}
             </div>
           </section>
 
           {/* Contact */}
-          <section
-            ref={contactRef}
-            id="contact"
-            className="reveal-section space-y-6 rounded-2xl border border-border/80 bg-gradient-to-b from-secondary/40 via-background/40 to-background px-5 py-6 shadow-[0_0_40px_rgba(16,185,129,0.28)] md:px-7 md:py-8"
-          >
-            <div
-              className="reveal-child flex flex-col gap-3 md:flex-row md:items-end md:justify-between"
-              data-reveal-index="0"
-            >
+          <section ref={contactRef} id="contact" className="reveal-section space-y-6 rounded-2xl border border-border/80 bg-gradient-to-b from-secondary/40 via-background/40 to-background px-5 py-6 shadow-[0_0_40px_rgba(16,185,129,0.28)] md:px-7 md:py-8">
+            <div className="reveal-child flex flex-col gap-3 md:flex-row md:items-end md:justify-between" data-reveal-index="0">
               <div>
                 <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Contact</h2>
-                <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">
-                  Ready for a new build, a focused upgrade, or a complete overhaul? Share a quick overview and I'll
-                  respond with next steps.
-                  <span className="text-foreground">monstercompanym@gmail.com</span>.
+                <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">Ready for a new build, a focused upgrade, or a complete overhaul? Share a quick overview and I'll respond with next steps.<span className="text-foreground"></span>.
                 </p>
               </div>
               <p className="text-xs text-muted-foreground">
@@ -406,55 +365,25 @@ const Index = () => {
               </p>
             </div>
 
-            <form
-              onSubmit={handleSubmit}
-              className="reveal-child mt-4 space-y-4 md:space-y-5"
-              data-reveal-index="1"
-            >
+            <form onSubmit={handleSubmit} className="reveal-child mt-4 space-y-4 md:space-y-5" data-reveal-index="1">
               <div className="space-y-2">
-                <label
-                  htmlFor="email"
-                  className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground"
-                >
+                <label htmlFor="email" className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
                   Email
                 </label>
-                <Input
-                  id="email"
-                  type="email"
-                  autoComplete="email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  className="h-10 border-border/80 bg-background/60 text-sm text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
-                  placeholder="you@company.com"
-                />
+                <Input id="email" type="email" autoComplete="email" value={email} onChange={e => setEmail(e.target.value)} className="h-10 border-border/80 bg-background/60 text-sm text-foreground placeholder:text-muted-foreground focus-visible:ring-primary" placeholder="you@company.com" />
                 {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
               </div>
 
               <div className="space-y-2">
-                <label
-                  htmlFor="message"
-                  className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground"
-                >
+                <label htmlFor="message" className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
                   Project details
                 </label>
-                <Textarea
-                  id="message"
-                  rows={5}
-                  value={message}
-                  onChange={e => setMessage(e.target.value)}
-                  className="border-border/80 bg-background/60 text-sm text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
-                  placeholder="Briefly describe your website, goals, timeline, and any relevant links."
-                />
+                <Textarea id="message" rows={5} value={message} onChange={e => setMessage(e.target.value)} className="border-border/80 bg-background/60 text-sm text-foreground placeholder:text-muted-foreground focus-visible:ring-primary" placeholder="Briefly describe your website, goals, timeline, and any relevant links." />
                 {errors.message && <p className="text-xs text-destructive">{errors.message}</p>}
               </div>
 
               <div className="flex flex-wrap items-center gap-4 pt-1">
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="reveal-child shadow-[0_0_30px_rgba(16,185,129,0.55)]"
-                  data-reveal-index="2"
-                >
+                <Button type="submit" size="lg" className="reveal-child shadow-[0_0_30px_rgba(16,185,129,0.55)]" data-reveal-index="2">
                   Contact Me
                 </Button>
               </div>
@@ -462,10 +391,7 @@ const Index = () => {
           </section>
         </main>
 
-        <footer
-          ref={footerRef}
-          className="reveal-section mt-8 flex items-center justify-between border-t border-border/70 pt-5 text-[0.7rem] text-muted-foreground"
-        >
+        <footer ref={footerRef} className="reveal-section mt-8 flex items-center justify-between border-t border-border/70 pt-5 text-[0.7rem] text-muted-foreground">
           <span className="reveal-child" data-reveal-index="0">
             © {new Date().getFullYear()} Death. All rights reserved.
           </span>
