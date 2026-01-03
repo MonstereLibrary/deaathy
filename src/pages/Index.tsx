@@ -35,6 +35,7 @@ const Index = () => {
   const testimonialsRef = useRevealOnScroll<HTMLElement>();
   const workRef = useRevealOnScroll<HTMLElement>();
   const contactRef = useRevealOnScroll<HTMLElement>();
+  const footerRef = useRevealOnScroll<HTMLElement>();
   useEffect(() => {
     const currentPhrase = rotatingPhrases[phraseIndex];
     const isComplete = !isDeleting && displayedText === currentPhrase;
@@ -272,8 +273,8 @@ const Index = () => {
           </section>
 
           {/* Testimonials */}
-          <section id="testimonials" className="space-y-6 opacity-0 animate-fade-in [animation-delay:240ms] [animation-fill-mode:forwards]">
-            <div className="flex items-end justify-between gap-4">
+          <section ref={testimonialsRef} id="testimonials" className="reveal-section space-y-6">
+            <div className="reveal-child flex items-end justify-between gap-4" data-reveal-index="0">
               <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Reviews &amp; Testimonials</h2>
               <p className="max-w-md text-xs text-muted-foreground">
                 Feedback from the people who rely on reliable, performance-focused delivery: HR, tech, founders, and
@@ -282,29 +283,41 @@ const Index = () => {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {[{
-              name: "Sofia Martinez",
-              role: "HR Manager",
-              company: "Enterprise SaaS",
-              quote: "Exceptionally reliable and easy to work with. Consistently delivered on time and collaborated smoothly with both engineering and non-technical stakeholders."
-            }, {
-              name: "Alex Chen",
-              role: "Tech Lead",
-              company: "Fintech Platform",
-              quote: "Clean architecture, thoughtful abstractions, and a constant focus on performance. Ship-ready code that held up under real production load."
-            }, {
-              name: "Jordan Blake",
-              role: "Founder &amp; CEO",
-              company: "VC-backed Startup",
-              quote: "Moved from idea to production in weeks, not months. Clear communication, realistic expectations, and meaningful impact on key business metrics."
-            }, {
-              name: "Priya Singh",
-              role: "Senior Product Manager",
-              company: "B2B Product Suite",
-              quote: "Understands trade-offs, asks the right questions, and ships features that are both scalable and maintainable. A calm, professional partner for complex projects."
-            }].map((review, index) => <article key={review.name} className="group relative flex h-full flex-col justify-between rounded-xl border border-border/80 bg-card/40 px-5 py-5 text-xs text-muted-foreground shadow-[0_0_12px_rgba(15,23,42,0.6)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/70 hover:shadow-[0_0_38px_rgba(16,185,129,0.4)] motion-safe:animate-fade-in [animation-fill-mode:forwards]" style={{
-              animationDelay: `${260 + index * 90}ms`
-            }}>
+              {[
+                {
+                  name: "Sofia Martinez",
+                  role: "HR Manager",
+                  company: "Enterprise SaaS",
+                  quote:
+                    "Exceptionally reliable and easy to work with. Consistently delivered on time and collaborated smoothly with both engineering and non-technical stakeholders.",
+                },
+                {
+                  name: "Alex Chen",
+                  role: "Tech Lead",
+                  company: "Fintech Platform",
+                  quote:
+                    "Clean architecture, thoughtful abstractions, and a constant focus on performance. Ship-ready code that held up under real production load.",
+                },
+                {
+                  name: "Jordan Blake",
+                  role: "Founder &amp; CEO",
+                  company: "VC-backed Startup",
+                  quote:
+                    "Moved from idea to production in weeks, not months. Clear communication, realistic expectations, and meaningful impact on key business metrics.",
+                },
+                {
+                  name: "Priya Singh",
+                  role: "Senior Product Manager",
+                  company: "B2B Product Suite",
+                  quote:
+                    "Understands trade-offs, asks the right questions, and ships features that are both scalable and maintainable. A calm, professional partner for complex projects.",
+                },
+              ].map((review, index) => (
+                <article
+                  key={review.name}
+                  className="reveal-child group relative flex h-full flex-col justify-between rounded-xl border border-border/80 bg-card/40 px-5 py-5 text-xs text-muted-foreground shadow-[0_0_12px_rgba(15,23,42,0.6)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/70 hover:shadow-[0_0_38px_rgba(16,185,129,0.4)]"
+                  data-reveal-index={index + 1}
+                >
                   <div className="mb-3 flex items-baseline justify-between gap-3">
                     <div>
                       <p className="text-sm font-semibold text-primary">{review.name}</p>
@@ -316,22 +329,34 @@ const Index = () => {
                       {review.role}
                     </span>
                   </div>
-                  <p className="text-xs leading-relaxed text-muted-foreground md:text-[0.8rem]">
-                    {review.quote}
-                  </p>
-                </article>)}
+                  <p className="text-xs leading-relaxed text-muted-foreground md:text-[0.8rem]">{review.quote}</p>
+                </article>
+              ))}
             </div>
           </section>
 
           {/* Projects placeholder */}
-          <section className="space-y-4 opacity-0 animate-fade-in [animation-delay:300ms] [animation-fill-mode:forwards]">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Selected Work</h2>
-            <p className="max-w-2xl text-xs text-muted-foreground md:text-sm">
+          <section ref={workRef} className="reveal-section space-y-4">
+            <h2
+              className="reveal-child text-sm font-semibold uppercase tracking-[0.28em] text-primary"
+              data-reveal-index="0"
+            >
+              Selected Work
+            </h2>
+            <p
+              className="reveal-child max-w-2xl text-xs text-muted-foreground md:text-sm"
+              data-reveal-index="1"
+            >
               A curated selection of production projects will appear here. Each case study will break down the problem,
               the architecture, and the measurable impact of the final build.
             </p>
             <div className="grid gap-4 md:grid-cols-2">
-              {["Client Project Placeholder", "Case Study Placeholder"].map((title, index) => <article key={title} className="group relative flex flex-col justify-between rounded-xl border border-border/70 bg-card/40 px-5 py-5 text-xs text-muted-foreground transition-transform duration-200 hover:-translate-y-1 hover:border-primary/70 hover:text-foreground hover:shadow-[0_0_32px_rgba(16,185,129,0.35)]">
+              {["Client Project Placeholder", "Case Study Placeholder"].map((title, index) => (
+                <article
+                  key={title}
+                  className="reveal-child group relative flex flex-col justify-between rounded-xl border border-border/70 bg-card/40 px-5 py-5 text-xs text-muted-foreground transition-transform duration-200 hover:-translate-y-1 hover:border-primary/70 hover:text-foreground hover:shadow-[0_0_32px_rgba(16,185,129,0.35)]"
+                  data-reveal-index={index + 2}
+                >
                   <div>
                     <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                       Upcoming
@@ -346,16 +371,27 @@ const Index = () => {
                     In Progress
                   </span>
                   <div className="pointer-events-none absolute inset-px -z-10 rounded-[inherit] bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.2)_0,_transparent_55%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                </article>)}
+                </article>
+              ))}
             </div>
           </section>
 
           {/* Contact */}
-          <section id="contact" className="space-y-6 rounded-2xl border border-border/80 bg-gradient-to-b from-secondary/40 via-background/40 to-background px-5 py-6 opacity-0 shadow-[0_0_40px_rgba(16,185,129,0.28)] animate-fade-in [animation-delay:340ms] [animation-fill-mode:forwards] md:px-7 md:py-8">
-            <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <section
+            ref={contactRef}
+            id="contact"
+            className="reveal-section space-y-6 rounded-2xl border border-border/80 bg-gradient-to-b from-secondary/40 via-background/40 to-background px-5 py-6 shadow-[0_0_40px_rgba(16,185,129,0.28)] md:px-7 md:py-8"
+          >
+            <div
+              className="reveal-child flex flex-col gap-3 md:flex-row md:items-end md:justify-between"
+              data-reveal-index="0"
+            >
               <div>
                 <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Contact</h2>
-                <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">Ready for a new build, a focused upgrade, or a complete overhaul? Share a quick overview and I'll respond with next steps.<span className="text-foreground">monstercompanym@gmail.com</span>.
+                <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">
+                  Ready for a new build, a focused upgrade, or a complete overhaul? Share a quick overview and I'll
+                  respond with next steps.
+                  <span className="text-foreground">monstercompanym@gmail.com</span>.
                 </p>
               </div>
               <p className="text-xs text-muted-foreground">
@@ -363,25 +399,55 @@ const Index = () => {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="mt-4 space-y-4 md:space-y-5">
+            <form
+              onSubmit={handleSubmit}
+              className="reveal-child mt-4 space-y-4 md:space-y-5"
+              data-reveal-index="1"
+            >
               <div className="space-y-2">
-                <label htmlFor="email" className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
+                <label
+                  htmlFor="email"
+                  className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground"
+                >
                   Email
                 </label>
-                <Input id="email" type="email" autoComplete="email" value={email} onChange={e => setEmail(e.target.value)} className="h-10 border-border/80 bg-background/60 text-sm text-foreground placeholder:text-muted-foreground focus-visible:ring-primary" placeholder="you@company.com" />
+                <Input
+                  id="email"
+                  type="email"
+                  autoComplete="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  className="h-10 border-border/80 bg-background/60 text-sm text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
+                  placeholder="you@company.com"
+                />
                 {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
+                <label
+                  htmlFor="message"
+                  className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground"
+                >
                   Project details
                 </label>
-                <Textarea id="message" rows={5} value={message} onChange={e => setMessage(e.target.value)} className="border-border/80 bg-background/60 text-sm text-foreground placeholder:text-muted-foreground focus-visible:ring-primary" placeholder="Briefly describe your website, goals, timeline, and any relevant links." />
+                <Textarea
+                  id="message"
+                  rows={5}
+                  value={message}
+                  onChange={e => setMessage(e.target.value)}
+                  className="border-border/80 bg-background/60 text-sm text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
+                  placeholder="Briefly describe your website, goals, timeline, and any relevant links."
+                />
                 {errors.message && <p className="text-xs text-destructive">{errors.message}</p>}
               </div>
 
               <div className="flex flex-wrap items-center gap-4 pt-1">
-                <Button type="submit" size="lg" className="shadow-[0_0_30px_rgba(16,185,129,0.55)]">
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="reveal-child shadow-[0_0_30px_rgba(16,185,129,0.55)]"
+                  data-reveal-index="2"
+                >
                   Contact Me
                 </Button>
               </div>
@@ -389,9 +455,16 @@ const Index = () => {
           </section>
         </main>
 
-        <footer className="mt-8 flex items-center justify-between border-t border-border/70 pt-5 text-[0.7rem] text-muted-foreground">
-          <span>© {new Date().getFullYear()} Death. All rights reserved.</span>
-          <span className="hidden sm:inline">Built with a focus on reliability, clarity, and long-term maintainability.</span>
+        <footer
+          ref={footerRef}
+          className="reveal-section mt-8 flex items-center justify-between border-t border-border/70 pt-5 text-[0.7rem] text-muted-foreground"
+        >
+          <span className="reveal-child" data-reveal-index="0">
+            © {new Date().getFullYear()} Death. All rights reserved.
+          </span>
+          <span className="reveal-child hidden sm:inline" data-reveal-index="1">
+            Built with a focus on reliability, clarity, and long-term maintainability.
+          </span>
         </footer>
       </div>
     </div>;
