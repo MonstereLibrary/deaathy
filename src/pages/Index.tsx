@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useRevealOnScroll } from "@/hooks/use-reveal-on-scroll";
 import { z } from "zod";
 const rotatingPhrases = ["Frontend Development", "Backend Development", "Website Upgrades", "Complete Website Overhauls"];
 const contactSchema = z.object({
@@ -27,6 +28,13 @@ const Index = () => {
     message?: string;
   }>({});
   const hasAnimatedHero = useRef(false);
+  const heroRef = useRevealOnScroll<HTMLElement>();
+  const aboutRef = useRevealOnScroll<HTMLElement>();
+  const servicesRef = useRevealOnScroll<HTMLElement>();
+  const skillsRef = useRevealOnScroll<HTMLElement>();
+  const testimonialsRef = useRevealOnScroll<HTMLElement>();
+  const workRef = useRevealOnScroll<HTMLElement>();
+  const contactRef = useRevealOnScroll<HTMLElement>();
   useEffect(() => {
     const currentPhrase = rotatingPhrases[phraseIndex];
     const isComplete = !isDeleting && displayedText === currentPhrase;
@@ -113,7 +121,7 @@ const Index = () => {
 
         <main className="flex flex-1 flex-col gap-20 pb-10 md:gap-24 md:pb-16">
           {/* Hero */}
-          <section id="hero" className="grid items-center gap-10 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1.2fr)]">
+          <section ref={heroRef} id="hero" className="reveal-section grid items-center gap-10 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1.2fr)]">
             <div className="space-y-6 md:space-y-8">
               <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
                 California · Web Developer & Website Architect
@@ -180,8 +188,8 @@ const Index = () => {
           </section>
 
           {/* About */}
-          <section id="about" className="opacity-0 animate-fade-in [animation-delay:120ms] [animation-fill-mode:forwards]">
-            <div className="space-y-4 rounded-2xl border border-primary/40 bg-card/40 px-5 py-5 shadow-[0_0_30px_rgba(16,185,129,0.35)] md:px-6 md:py-6">
+          <section ref={aboutRef} id="about" className="reveal-section">
+            <div className="reveal-child space-y-4 rounded-2xl border border-primary/40 bg-card/40 px-5 py-5 shadow-[0_0_30px_rgba(16,185,129,0.35)] md:px-6 md:py-6" data-reveal-index="0">
               <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">About Me</h2>
               <p className="max-w-2xl text-sm text-muted-foreground md:text-base">
                 I&apos;m Death, a 26-year-old web developer and website architect based in California. Since graduating in
@@ -196,8 +204,8 @@ const Index = () => {
           </section>
 
           {/* Services */}
-          <section id="services" className="space-y-6 opacity-0 animate-fade-in [animation-delay:220ms] [animation-fill-mode:forwards]">
-            <div className="flex items-end justify-between gap-4">
+          <section ref={servicesRef} id="services" className="reveal-section space-y-6">
+            <div className="reveal-child flex items-end justify-between gap-4" data-reveal-index="0">
               <h2 className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Services</h2>
               <p className="max-w-md text-xs text-muted-foreground">
                 From targeted upgrades to complete rebuilds, I work end-to-end on your web stack.
@@ -217,10 +225,7 @@ const Index = () => {
             }, {
               title: "Complete Website Overhauls",
               description: "Full redesigns and rebuilds that modernize legacy systems into clean, maintainable platforms."
-            }].map((service, index) => <article key={service.title} className="group relative overflow-hidden rounded-xl border border-border/70 bg-card/40 px-5 py-5 transition-transform duration-200 hover:-translate-y-1 hover:border-primary/70 hover:shadow-[0_0_35px_rgba(16,185,129,0.45)]" style={{
-              animationDelay: `${260 + index * 80}ms`,
-              animationFillMode: "forwards"
-            }}>
+            }].map((service, index) => <article key={service.title} className="reveal-child group relative overflow-hidden rounded-xl border border-border/70 bg-card/40 px-5 py-5 transition-transform duration-200 hover:-translate-y-1 hover:border-primary/70 hover:shadow-[0_0_35px_rgba(16,185,129,0.45)]" data-reveal-index={index}>
                   <div className="pointer-events-none absolute inset-px -z-10 rounded-[inherit] bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.22)_0,_transparent_55%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <h3 className="mb-2 text-sm font-semibold uppercase tracking-[0.22em] text-primary">
                     {service.title}

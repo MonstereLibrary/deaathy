@@ -109,3 +109,66 @@ All colors MUST be HSL.
   }
 }
 
+@layer utilities {
+  /* Base wrapper for sections that should reveal as you scroll */
+  .reveal-section {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98) skewY(0.5deg);
+    filter: blur(6px);
+    will-change: opacity, transform, filter;
+    transition:
+      opacity 0.7s ease-out,
+      transform 0.7s ease-out,
+      filter 0.7s ease-out,
+      box-shadow 0.7s ease-out;
+  }
+
+  /* Activated state once the section is in view */
+  .reveal-section-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1) skewY(0);
+    filter: blur(0);
+    box-shadow: 0 0 32px hsl(var(--primary) / 0.35);
+  }
+
+  /* Child elements inside a reveal section, used for staggered entrance */
+  .reveal-child {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+  }
+
+  .reveal-section-visible .reveal-child {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Stagger utilities via data indices */
+  .reveal-child[data-reveal-index="0"] {
+    transition-delay: 0.05s;
+  }
+
+  .reveal-child[data-reveal-index="1"] {
+    transition-delay: 0.12s;
+  }
+
+  .reveal-child[data-reveal-index="2"] {
+    transition-delay: 0.19s;
+  }
+
+  .reveal-child[data-reveal-index="3"] {
+    transition-delay: 0.26s;
+  }
+
+  .reveal-child[data-reveal-index="4"] {
+    transition-delay: 0.33s;
+  }
+
+  .reveal-child[data-reveal-index="5"] {
+    transition-delay: 0.4s;
+  }
+}
+
+
