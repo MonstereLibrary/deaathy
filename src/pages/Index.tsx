@@ -115,6 +115,9 @@ const Index = () => {
             <a href="#services" className="transition-colors hover:text-foreground">
               Services
             </a>
+            <a href="#testimonials" className="transition-colors hover:text-foreground">
+              Reviews
+            </a>
             <a href="#skills" className="transition-colors hover:text-foreground">
               Skills
             </a>
