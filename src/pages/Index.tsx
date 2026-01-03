@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 
 const rotatingPhrases = [
@@ -26,7 +25,6 @@ const contactSchema = z.object({
 });
 
 const Index = () => {
-  const { toast } = useToast();
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -87,12 +85,12 @@ const Index = () => {
 
     setErrors({});
 
-    toast({
-      title: "Message ready",
-      description: "This is a demo form. Wire it to your backend or email service when you're ready.",
-    });
+    const recipient = "monstercompanym@gmail.com";
+    const subject = "New project inquiry from portfolio site";
+    const body = `From: ${email}\n\n${message}`;
+    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-    // Keep the values so the user can still copy them out.
+    window.location.href = mailtoUrl;
   };
 
   return (
